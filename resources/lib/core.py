@@ -90,27 +90,40 @@ def makeAdditionRequest(showName):
 def runRecap(previous=False):
     log("runRecap: Started")
 
-    # First check to see if we have a TV Show already selected
     showName = None
-    if xbmc.getInfoLabel("ListItem.dbtype") in ['tvshow', 'season', 'episode']:
-        showName = xbmc.getInfoLabel("ListItem.TVShowTitle")
 
-    autoDetectedShowName = False
-    # If there is no video name available prompt for it
-    if showName in [None, ""]:
-        log("Recap: No TV Show detected, prompting user")
+    json_query = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "Addons.GetAddonDetails", "params": { "addonid": "repository.robwebset", "properties": ["enabled", "broken", "name", "author"]  }, "id": 1}')
+    json_response = simplejson.loads(json_query)
 
-        # Prompt the user for the new name
-        keyboard = xbmc.Keyboard('', ADDON.getLocalizedString(32014), False)
-        keyboard.doModal()
+    displayNotice = True
+    if ("result" in json_response) and ('addon' in json_response['result']):
+        addonItem = json_response['result']['addon']
+        if (addonItem['enabled'] is True) and (addonItem['broken'] is False) and (addonItem['type'] == 'xbmc.addon.repository') and (addonItem['addonid'] == 'repository.robwebset') and (addonItem['author'] == 'robwebset'):
+            displayNotice = False
 
-        if keyboard.isConfirmed():
-            try:
-                showName = keyboard.getText().decode("utf-8")
-            except:
-                showName = keyboard.getText()
-    else:
-        autoDetectedShowName = True
+            # First check to see if we have a TV Show already selected
+            if xbmc.getInfoLabel("ListItem.dbtype") in ['tvshow', 'season', 'episode']:
+                showName = xbmc.getInfoLabel("ListItem.TVShowTitle")
+
+            autoDetectedShowName = False
+            # If there is no video name available prompt for it
+            if showName in [None, ""]:
+                log("Recap: No TV Show detected, prompting user")
+
+                # Prompt the user for the new name
+                keyboard = xbmc.Keyboard('', ADDON.getLocalizedString(32014), False)
+                keyboard.doModal()
+
+                if keyboard.isConfirmed():
+                    try:
+                        showName = keyboard.getText().decode("utf-8")
+                    except:
+                        showName = keyboard.getText()
+            else:
+                autoDetectedShowName = True
+
+    if displayNotice:
+        xbmc.executebuiltin('Notification("robwebset Repository Required","github.com/robwebset/repository.robwebset",10000,%s)' % ADDON.getAddonInfo('icon'))
 
     recap = Recap()
     selectedItem = None
