@@ -1,0 +1,57 @@
+[[https://github.com/robwebset/script.recap/raw/master/icon.png]]
+
+== Introduction ==
+You can install this addon from: [https://www.urepo.org URepo Repository]
+<br />
+<br />
+The Recap addon is an addon that allows you to "Catch Up" with what has happened in a given TV Episode. It uses the site [http://www.recapguide.com www.recapguide.com] and will display a small description and 50 images to jog your memory for what happened.
+<br />
+<br />
+This is useful if you watch TV an entire season/series and then watch the episodes back-to-back. This means it can be almost a year between watching each season/series, and this addon can help remind you what has happened.
+<br />
+<br />
+It can be run from the Programs section, or call up the context menu on a TV Show/Season/Episode and you can get the recap on that show (For episodes, there is also an option to get a recap for the previous episode).
+<br />
+== Recap Information ==
+The following image is an example of the recap information provided:
+<center>
+[[https://github.com/robwebset/repository.robwebset/raw/master/script.recap/images/Recap-Screen1.JPG|400px]]
+</center>
+<br />
+== Settings ==
+=== Recap ===
+{| border="0"
+|- valign=top
+|
+:'''Show Recap On Context Menu (Restart Required)'''
+::Shows the recap option on the context menu for TV Show items
+:'''Show Recap Previous On Context Menu (Restart Required)'''
+::Shows the recap previous episode option on the context menu for TV Show episodes
+:<u>'''''Debugging'''''</u>
+::
+:'''Enable Debug logging'''
+::Enables Recap debug logging into the Kodi log file
+|}
+<br />
+=== Behaviour ===
+{| border="0"
+|- valign=top
+|
+:'''Show Automatically If Only One Match'''
+::If there is only one TV Show that matches the title searched for then do not prompt for show selection
+:'''Show Image Captions'''
+::Show the captions over the images for the TV Show screenshots
+:'''Loop Slideshow'''
+::When navigating the slideshow, when the last image is reached, show the first image as the next image
+:'''Automatically Progress Slideshow'''
+::Automatically flick through the images for the TV Show without the need to click the next button
+:'''Enable Notifications For Requests'''
+::Allows an email address to be entered that will be sent with any requests to add new TV Shows. This email address will be used to notify you when the show is added
+|}
+<br />
+== Debugging ==
+If reporting a problem, please also provide a debug log. To do this you need to enable BOTH:
+* Kodi logging from the main setting menu
+* Recap debug from the Recap addon settings menu
+Please do not paste the log into the forum thread, just link to it.
+<br />
