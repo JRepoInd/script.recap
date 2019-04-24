@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.recap" name="Recap" version="100.3.0" provider-name="robwebset">
+<addon id="script.recap" name="Recap" version="100.4.0" provider-name="robwebset">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -12,11 +12,11 @@
 		<menu id="kodi.core.main">
 			<item library="default.py">
 				<label>32001</label>
-				<visible>IsEmpty(Window(videos).Property("RecapHideContextMenu")) + [StringCompare(ListItem.dbtype,tvshow) | StringCompare(ListItem.dbtype,season) | StringCompare(ListItem.dbtype,episode)]</visible>
+				<visible>String.IsEmpty(Window(videos).Property("RecapHideContextMenu")) + [StringCompare(ListItem.dbtype,tvshow) | StringCompare(ListItem.dbtype,season) | StringCompare(ListItem.dbtype,episode)]</visible>
 			</item>
 			<item library="previous.py">
 				<label>32011</label>
-				<visible>IsEmpty(Window(videos).Property("RecapPreviousHideContextMenu")) + StringCompare(ListItem.dbtype,episode) + [IntegerGreaterThan(ListItem.Episode,1) | IntegerGreaterThan(ListItem.Season,1)]</visible>
+				<visible>String.IsEmpty(Window(videos).Property("RecapPreviousHideContextMenu")) + StringCompare(ListItem.dbtype,episode) + [IntegerGreaterThan(ListItem.Episode,1) | IntegerGreaterThan(ListItem.Season,1)]</visible>
 			</item>
 		</menu>
 	</extension>
@@ -26,8 +26,7 @@
 		<language></language>
 		<platform>all</platform>
 		<license>See LICENSE.txt</license>
-		<forum>http://www.urepo.org/forum/viewtopic.php?t=1761</forum>
-		<news>Available from the URepo repository</news>
+		<forum>https://github.com/robwebset/script.recap</forum>
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
